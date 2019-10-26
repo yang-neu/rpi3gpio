@@ -1,0 +1,132 @@
+cc_library_shared {
+    // FIXME: this should only be -impl for a passthrough hal.
+    // In most cases, to convert this to a binderized implementation, you should:
+    // - change '-impl' to '-service' here and make it a cc_binary instead of a
+    //   cc_library_shared.
+    // - add a *.rc file for this module.
+    // - delete HIDL_FETCH_I* functions.
+    // - call configureRpcThreadpool and registerAsService on the instance.
+    // You may also want to append '-impl/-service' with a specific identifier like
+    // '-vendor' or '-<hardware identifier>' etc to distinguish it.
+    name: "android.hardware.rpi3gpio@2.0-impl",
+    relative_install_path: "hw",
+    // FIXME: this should be 'vendor: true' for modules that will eventually be
+    // on AOSP.
+    proprietary: true,
+    srcs: [
+        "Rpi3gpio.cpp",
+        "Rpi3gpioCallback.cpp",
+    ],
+    shared_libs: [
+        "libhidlbase",
+        "libhidltransport",
+        "libutils",
+	"liblog",
+        "android.hardware.rpi3gpio@2.0",
+    ],
+}
+
+
+cc_binary {
+    name: "android.hardware.rpi3gpio@2.0-service",
+    defaults: ["hidl_defaults"],
+    //vendor: true,
+    init_rc: ["android.hardware.rpi3gpio@2.0-service.rc"],
+    relative_install_path: "hw",
+    proprietary: true,
+    srcs: ["service.cpp",
+      "Rpi3gpio.cpp",
+      "Rpi3gpioCallback.cpp",
+      ],
+ 
+    shared_libs: [
+        "liblog",
+        "libhardware",
+        "libhidlbase",
+        "libhidltransport",
+        "libutils",
+        "android.hardware.rpi3gpio@2.0",
+    ], 
+}
+
+cc_binary {
+    name: "demoservice_20",
+    relative_install_path: "hw",
+    init_rc: ["demoservice.rc"],
+    proprietary: true,
+    srcs: ["com/example/gpio_led/IDemoService.aidl",
+		"com/example/gpio_led/ICallback.aidl",
+		"demoservice.cpp",
+		"Rpi3gpioCallback.cpp"
+      ],
+ 
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "libbinder",
+        "liblog",
+        "libhidlbase",
+        "libhidltransport",
+        "android.hardware.rpi3gpio@2.0",  // necessary both in runtime and for compiler to find "IRpi3gpio.h" 
+    ], 
+	include_dirs: [
+	"frameworks/native/include",
+	"system/core/include",
+	],
+
+    aidl: {
+        local_include_dirs: ["."]
+    },
+}
+
+cc_binary {
+    name: "democlient_20",
+    relative_install_path: "hw",
+    proprietary: true,
+    srcs: ["democlient.cpp",
+           "com/example/gpio_led/IDemoService.aidl",
+           "com/example/gpio_led/ICallback.aidl",
+      ],
+ 
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "libbinder",
+        "liblog",
+    ], 
+	include_dirs: [
+	"frameworks/native/include",
+	"system/core/include",
+	],
+    aidl: {
+        //export_aidl_headers: true, 
+        local_include_dirs: ["."],
+    },
+
+}
+
+
+cc_library_shared {
+    name: "libhello-jnicallback",
+    proprietary: true,
+    srcs: [
+        "hello-jnicallback.cpp",
+        "com/example/gpio_led/IDemoService.aidl",
+        "com/example/gpio_led/ICallback.aidl",        
+    ],
+    shared_libs: [
+        "liblog",
+        "libutils",
+        "libcutils",
+        "libbinder",
+    ],
+	include_dirs: [
+	"libnativehelper/include_jni",
+	"frameworks/native/include",
+	"system/core/include",
+	],
+    aidl: {
+        //export_aidl_headers: true, 
+        local_include_dirs: ["."],
+    },
+}

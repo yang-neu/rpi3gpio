@@ -1,0 +1,17 @@
+package android.hardware.rpi3gpio@2.0;
+import IRpi3gpioCallback;
+
+interface IRpi3gpio {
+
+  //get led status 
+  get() generates (LedStatus result);  
+  
+  //set led status 
+  set(LedStatus  val) generates(int32_t  ret);
+  on() ;
+  off() ;
+
+  //register callback interface
+  registerCallback(IRpi3gpioCallback cb);
+
+};

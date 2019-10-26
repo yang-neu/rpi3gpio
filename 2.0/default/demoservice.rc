@@ -1,0 +1,4 @@
+service vendor.demoservice /vendor/bin/hw/demoservice_20
+    class late_start
+    user system 
+    group system 

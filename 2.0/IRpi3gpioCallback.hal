@@ -1,0 +1,10 @@
+//refered : https://source.android.com/devices/architecture/hidl-cpp/interfaces.html
+
+package android.hardware.rpi3gpio@2.0;
+
+interface IRpi3gpioCallback {
+    sendEvent(uint32_t event_id);
+    sendData(vec<uint8_t> data);
+
+};
+

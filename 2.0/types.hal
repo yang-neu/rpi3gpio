@@ -1,0 +1,13 @@
+package android.hardware.rpi3gpio@2.0;
+ 
+enum LedStatus : uint32_t {
+	LED_ON,
+	LED_OFF,
+	LED_BAD_VALUE,
+};
+ 
+ 
+struct BrightnessRange {
+    uint32_t min;
+    uint32_t max;
+};
