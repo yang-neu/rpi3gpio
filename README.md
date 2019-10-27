@@ -9,7 +9,7 @@ This is a complete android treble architecture sample worked on Raspberry pi 3b+
 1. AIDL java client activity  (Ref: https://github.com/yang-neu/gpio_led)
 1. SELinux configuration      (Ref: https://github.com/yang-neu/pie-device-rpi3)
 
---------------
+==============
 Specially appreciate:
    ・ https://www.brobwind.com/
    ・ 
