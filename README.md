@@ -9,6 +9,12 @@ This is a complete android treble architecture sample worked on Raspberry pi 3b+
 1. AIDL java client activity  (Ref: https://github.com/yang-neu/gpio_led)
 1. SELinux configuration      (Ref: https://github.com/yang-neu/pie-device-rpi3)
 
+This experiment achieved:
+
+1. Toggle LED by a physical push button.
+1. Count up the button push on the UI screen.
+1. Turn on/off LED by the LED switch on the UI screen.
+
 
 Specially appreciate:
 =====================
