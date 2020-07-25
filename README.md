@@ -15,20 +15,20 @@ This experiment achieved:
 1. Count up the button push on the UI screen.
 1. Turn on/off LED by the LED switch on the UI screen.
 
-Some necessary modification
-project build/make/
-diff --git a/target/product/vndk/28.txt b/target/product/vndk/28.txt
-index 712e91c58..7104adb6c 100644
---- a/target/product/vndk/28.txt
-+++ b/target/product/vndk/28.txt
-@@ -119,6 +119,9 @@ VNDK-core: android.hardware.radio.deprecated@1.0.so
- VNDK-core: android.hardware.radio@1.0.so
- VNDK-core: android.hardware.radio@1.1.so
- VNDK-core: android.hardware.radio@1.2.so
-+VNDK-core: android.hardware.rpi3gpio@2.0.so
- VNDK-core: android.hardware.secure_element@1.0.so
- VNDK-core: android.hardware.sensors@1.0.so
- VNDK-core: android.hardware.soundtrigger@2.0.so
+Some necessary modification  
+project build/make/  
+diff --git a/target/product/vndk/28.txt b/target/product/vndk/28.txt  
+index 712e91c58..7104adb6c 100644  
+--- a/target/product/vndk/28.txt  
++++ b/target/product/vndk/28.txt  
+@@ -119,6 +119,9 @@ VNDK-core: android.hardware.radio.deprecated@1.0.so  
+ VNDK-core: android.hardware.radio@1.0.so  
+ VNDK-core: android.hardware.radio@1.1.so  
+ VNDK-core: android.hardware.radio@1.2.so  
++VNDK-core: android.hardware.rpi3gpio@2.0.so  
+ VNDK-core: android.hardware.secure_element@1.0.so  
+ VNDK-core: android.hardware.sensors@1.0.so  
+ VNDK-core: android.hardware.soundtrigger@2.0.so  
 
 Specially appreciate:
 =====================
